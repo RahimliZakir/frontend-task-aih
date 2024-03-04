@@ -1,0 +1,33 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  --border-color: #f1f1f1;
+  --main-color: #802c6e;
+}
+
+.custom-container {
+  @apply container px-[15px] mx-auto;
+}
+
+.spinner {
+  position: fixed;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid --main-color;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
