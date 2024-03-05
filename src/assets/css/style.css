@@ -5,8 +5,10 @@
 :root {
   --border-color: #f1f1f1;
   --main-color: #802c6e;
+  --nav-color: #fafafa;
   --star-foreground: #ffc000;
   --star-background: #d0d0d0;
+  --linkedin-icon-color: #0a66c2;
 }
 
 .custom-container {
@@ -14,11 +16,14 @@
 }
 
 .badge {
-  @apply inline-block rounded-[5px] px-[0.65rem] py-[0.35rem] text-white bg-[color:var(--main-color)];
+  @apply inline-block rounded-[5px] px-[0.65rem] py-[0.35rem] text-white bg-[color:var(--main-color)] text-[0.9rem];
 }
 
 .spinner {
-  position: fixed;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 50px;
   height: 50px;
   border-radius: 50%;
