@@ -3,6 +3,7 @@ import useSWR from "swr";
 import { fetcher } from "../api";
 
 import DataLoadWrapper from "./shared/DataLoadWrapper";
+import StarRating from "./shared/StarRating";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 
@@ -75,8 +76,16 @@ const Products = () => {
                     <div className="p-3 border-t-[1px]">
                       <h4 className="font-semibold mb-1">{item.title}</h4>
                       <span className="badge mb-1">{item.category}</span>
-                      <p className="mb-1">({item.rating.rate})</p>
-                      <p className="font-semibold text-[color:var(--main-color)]">
+                      <div className="flex items-center">
+                        <p>{item.rating.rate}</p>
+                        <div className="mx-1">
+                          <StarRating rating={item.rating.rate} />
+                        </div>
+                        <p className="text-[color:gray] text-[0.8rem]">
+                          ({item.rating.count})
+                        </p>
+                      </div>
+                      <p className="font-semibold text-[1.2rem] text-[color:var(--main-color)]">
                         {item.price} ₼
                       </p>
                     </div>

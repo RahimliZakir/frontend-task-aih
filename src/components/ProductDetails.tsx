@@ -28,7 +28,9 @@ const ProductDetails = () => {
                 <span className="badge">{data.category}</span>
                 <div className="flex items-center">
                   <p>{data.rating.rate}</p>
-                  <StarRating />
+                  <div className="mx-1">
+                    <StarRating rating={data.rating.rate} />
+                  </div>
                   <p className="text-[color:gray] text-[0.8rem]">
                     ({data.rating.count})
                   </p>
