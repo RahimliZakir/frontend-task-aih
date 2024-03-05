@@ -72,9 +72,9 @@ const Products = () => {
                       />
                     </div>
                     <div className="p-3 border-t-[1px]">
-                      <h4 className="font-semibold">{item.title}</h4>
-                      <p>{item.category}</p>
-                      <p>({item.rating.rate})</p>
+                      <h4 className="font-semibold mb-1">{item.title}</h4>
+                      <span className="badge mb-1">{item.category}</span>
+                      <p className="mb-1">({item.rating.rate})</p>
                       <p className="font-semibold text-[color:var(--main-color)]">
                         {item.price} ₼
                       </p>

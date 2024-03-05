@@ -11,6 +11,10 @@
   @apply container px-[15px] mx-auto;
 }
 
+.badge {
+  @apply inline-block rounded-[5px] px-[0.65rem] py-[0.35rem] text-white bg-[color:var(--main-color)];
+}
+
 .spinner {
   position: fixed;
   width: 50px;
