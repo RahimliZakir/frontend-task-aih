@@ -5,6 +5,8 @@
 :root {
   --border-color: #f1f1f1;
   --main-color: #802c6e;
+  --star-foreground: #ffc000;
+  --star-background: #d0d0d0;
 }
 
 .custom-container {
@@ -34,4 +36,25 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.ratings {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  color: var(--star-background);
+  overflow: hidden;
+}
+.full-stars {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--star-foreground);
+}
+.empty-stars:before,
+.full-stars:before {
+  content: "\2605\2605\2605\2605\2605";
+  font-size: 14pt;
 }

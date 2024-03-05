@@ -4,6 +4,7 @@ import { fetcher } from "../api";
 
 import DataLoadWrapper from "./shared/DataLoadWrapper";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const {
@@ -61,9 +62,9 @@ const Products = () => {
               return (
                 <div
                   key={item.id}
-                  className="border rounded-[5px] overflow-hidden mt-3 hover:shadow-md duration-300"
+                  className="border rounded-[5px] overflow-hidden hover:shadow-md duration-300"
                 >
-                  <a href="#">
+                  <Link to={`/products/${item.id}`}>
                     <div className="bg-white">
                       <img
                         className="w-full h-[300px] object-contain"
@@ -79,7 +80,7 @@ const Products = () => {
                         {item.price} ₼
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
               );
             })}

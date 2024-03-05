@@ -17,7 +17,8 @@ const DataLoadWrapper = ({
 
   if (error) return <div>Error!</div>;
 
-  return data && data.length > 0 ? children : <div>There is no data</div>;
+  // return data /*&& data.length > 0*/ ? children : <div>There is no data</div>;
+  return children;
 };
 
 export default DataLoadWrapper;
