@@ -16,16 +16,18 @@ const ProductDetails = () => {
   return (
     <DataLoadWrapper isLoading={isLoading} error={error} data={data}>
       <section id="product-details">
-        <div className="custom-container py-3 flex justify-center">
-          <div className="w-1/3">
+        <div className="custom-container py-3 md:flex md:justify-center">
+          <div className="w-full md:w-1/2 lg:w-2/5 xl:w-1/3">
             <img
               className="w-full h-[350px] object-contain"
               src={data?.image}
               alt="Product Detail"
             />
           </div>
-          <div className="w-1/3 px-7 flex flex-col justify-between">
-            <h1 className="font-bold text-[2rem]">{data?.title}</h1>
+          <div className="w-full mt-3 md:w-1/2 lg:w-2/5 xl:w-1/3 md:mt-0 px-7 flex flex-col justify-between">
+            <h1 className="text-center md:text-left font-bold text-[2rem]">
+              {data?.title}
+            </h1>
             <div className="flex items-center justify-between">
               <span className="badge">{data?.category}</span>
               <div className="flex items-center">

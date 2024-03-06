@@ -9,11 +9,15 @@ const Header = () => {
     <header>
       <nav className="bg-[color:var(--nav-color)] py-5 border-b-[2px] border-solid border-[color:var(--border-color)]">
         <div className="custom-container flex justify-between items-center">
-          <div className="w-1/2 flex items-center">
-            <div className="w-[45px]">
-              <img className="w-full" src={Logo} alt="Fake Store Logo" />
-            </div>
-            <h1 className="text-2xl font-semibold ms-2">Fake Store</h1>
+          <div className="w-1/2">
+            <a href="/">
+              <div className="flex items-center">
+                <div className="w-[45px]">
+                  <img className="w-full" src={Logo} alt="Fake Store Logo" />
+                </div>
+                <h1 className="text-2xl font-semibold ms-2">Fake Store</h1>
+              </div>
+            </a>
           </div>
           <div className="w-1/2 text-right">
             <a
