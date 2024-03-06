@@ -1,8 +1,5 @@
+import { StarRatingProps } from "../../types/StarRating.types";
 import { calculateStarWidth } from "../../utils/calculateStarWidth";
-
-type StarRatingProps = {
-  rating: number;
-};
 
 const StarRating = ({ rating }: StarRatingProps) => {
   const calculatedWidth = calculateStarWidth(rating);
@@ -17,5 +14,5 @@ const StarRating = ({ rating }: StarRatingProps) => {
     </div>
   );
 };
-
+ 
 export default StarRating;

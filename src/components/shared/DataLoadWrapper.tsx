@@ -1,11 +1,5 @@
-import Loader from "./Spinner";
-
-type DataLoadWrapperProps = {
-  isLoading: boolean;
-  error: any;
-  data: any;
-  children: JSX.Element;
-};
+import { DataLoadWrapperProps } from "../../types/DataLoad.types";
+import Spinner from "./Spinner";
 
 const DataLoadWrapper = ({
   isLoading,
@@ -13,12 +7,19 @@ const DataLoadWrapper = ({
   data,
   children,
 }: DataLoadWrapperProps) => {
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Spinner />;
 
   if (error) return <div>Error!</div>;
 
-  // return data /*&& data.length > 0*/ ? children : <div>There is no data</div>;
-  return children;
+  if (
+    data === null ||
+    (Array.isArray(data) && data.length === 0) ||
+    (typeof data === "object" && Object.keys(data).length === 0)
+  ) {
+    return <div>There is no data</div>;
+  }
+
+  return data && children;
 };
 
 export default DataLoadWrapper;

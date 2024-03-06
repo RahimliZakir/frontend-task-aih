@@ -11,12 +11,17 @@
   --linkedin-icon-color: #0a66c2;
 }
 
+
 .custom-container {
   @apply container px-[15px] mx-auto;
 }
 
 .badge {
   @apply inline-block rounded-[5px] px-[0.65rem] py-[0.35rem] text-white bg-[color:var(--main-color)] text-[0.9rem];
+}
+
+.button {
+  @apply cursor-pointer inline-block px-4 py-2 mr-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
 }
 
 .spinner {
