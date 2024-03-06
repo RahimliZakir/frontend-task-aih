@@ -9,6 +9,7 @@
   --star-foreground: #ffc000;
   --star-background: #d0d0d0;
   --linkedin-icon-color: #0a66c2;
+  --error-text: #dc3545;
 }
 
 .custom-container {
@@ -20,5 +21,5 @@
 }
 
 .button {
-  @apply cursor-pointer inline-block px-4 py-2 mr-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+  @apply cursor-pointer inline-block px-4 py-2 mr-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 duration-300;
 }

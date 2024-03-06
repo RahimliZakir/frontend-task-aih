@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Product } from "../types/interfaces/Product.types";
 
-const usePagination = (data: Product[] /*| any[]*/, itemsPerPage: number) => {
+const usePagination = (data: Product[] | any[], itemsPerPage: number) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const paginatedItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
   const nextPage = () => {
     setCurrentPage((prevPage) =>
@@ -23,7 +23,7 @@ const usePagination = (data: Product[] /*| any[]*/, itemsPerPage: number) => {
   };
 
   return {
-    currentItems,
+    paginatedItems,
     nextPage,
     prevPage,
     goToPage,

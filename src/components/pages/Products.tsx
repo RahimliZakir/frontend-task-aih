@@ -4,10 +4,9 @@ import usePagination from "../../hooks/usePagination";
 import { useGetProducts } from "../../api/products";
 import { useGetCategories } from "../../api/categories";
 //* Utils
-import { configureCurrency } from "../../utils/currency";
+import { configureCurrency } from "../../utils/amount";
 //* Types
 import { Product } from "../../types/interfaces/Product.types";
-import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
 //* Shared Components
 import DataLoadWrapper from "../shared/DataLoadWrapper";
 import StarRating from "../shared/StarRating/Index";
@@ -26,16 +25,18 @@ const Products = () => {
   } = useGetProducts();
   const { data: categoryData } = useGetCategories();
 
-  const filteredProductData = productData?.filter((product: Product) => {
-    const matchesCategory = category === "" || product.category === category;
-    const matchesProductName =
-      productName === "" ||
-      product.title.toLowerCase().includes(productName.toLowerCase());
-    return matchesCategory && matchesProductName;
-  });
+  const { paginatedItems, nextPage, prevPage, currentPage, totalPages } =
+    usePagination(productData || [], 10);
 
-  const { currentItems, nextPage, prevPage, currentPage, totalPages } =
-    usePagination(filteredProductData || [], 10);
+  const getFilteredPaginatedItems = paginatedItems?.filter(
+    (product: Product) => {
+      const matchesCategory = category === "" || product.category === category;
+      const matchesProductName =
+        productName === "" ||
+        product.title.toLowerCase().includes(productName.toLowerCase());
+      return matchesCategory && matchesProductName;
+    }
+  );
 
   return (
     <DataLoadWrapper
@@ -68,75 +69,83 @@ const Products = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-5">
-            {currentItems?.map(
-              ({
-                id,
-                title,
-                price,
-                category,
-                image,
-                rating: { rate, count },
-              }: Product) => {
-                return (
-                  <div
-                    key={id}
-                    className="border rounded-[5px] overflow-hidden hover:shadow-lg duration-300"
-                  >
-                    <Link to={`/products/${id}`}>
-                      <div className="bg-white">
-                        <img
-                          className="w-full h-[300px] object-contain"
-                          src={image}
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="p-3 border-t-[1px]">
-                        <h4
-                          title={title}
-                          className="truncate text-primary font-semibold mb-1"
-                        >
-                          {title}
-                        </h4>
-                        <span className="badge mb-1">{category}</span>
-                        <div className="flex items-center">
-                          <p>{rate}</p>
-                          <div className="mx-1">
-                            <StarRating rating={rate} />
+          {getFilteredPaginatedItems?.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-5">
+              {getFilteredPaginatedItems?.map(
+                ({
+                  id,
+                  title,
+                  price,
+                  category,
+                  image,
+                  rating: { rate, count },
+                }: Product) => {
+                  return (
+                    <div
+                      key={id}
+                      className="border rounded-[5px] overflow-hidden hover:shadow-lg duration-300"
+                    >
+                      <Link to={`/products/${id}`}>
+                        <div className="bg-white">
+                          <img
+                            className="w-full h-[300px] object-contain"
+                            src={image}
+                            alt="Product"
+                          />
+                        </div>
+                        <div className="p-3 border-t-[1px]">
+                          <h4
+                            title={title}
+                            className="truncate text-primary font-semibold mb-1"
+                          >
+                            {title}
+                          </h4>
+                          <span className="badge mb-1">{category}</span>
+                          <div className="flex items-center">
+                            <p>{rate}</p>
+                            <div className="mx-1">
+                              <StarRating rating={rate} />
+                            </div>
+                            <p className="text-[color:gray] text-[0.8rem]">
+                              ({count})
+                            </p>
                           </div>
-                          <p className="text-[color:gray] text-[0.8rem]">
-                            ({count})
+                          <p className="font-semibold text-[1.2rem] text-[color:var(--main-color)]">
+                            {configureCurrency(price)}
                           </p>
                         </div>
-                        <p className="font-semibold text-[1.2rem] text-[color:var(--main-color)]">
-                          {configureCurrency(price, CurrencyTypes.AZN)}
-                        </p>
-                      </div>
-                    </Link>
-                  </div>
-                );
-              }
-            )}
-          </div>
-          <div className="mt-3 flex justify-center items-center">
-            <button
-              className="button"
-              onClick={prevPage}
-              disabled={currentPage === 1}
-            >
-              Prev
-            </button>
-            <span className="mx-2">
-              {currentPage} / {totalPages}
-            </span>
-            <button
-              className="button"
-              onClick={nextPage}
-              disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
-          </div>
+                      </Link>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          ) : (
+            <div className="text-center font-medium text-[1.5rem] py-3">
+              Product Not Found!
+            </div>
+          )}
+          {getFilteredPaginatedItems?.length > 0 && (
+            <div className="mt-3 flex justify-center items-center">
+              <button
+                className="button"
+                onClick={prevPage}
+                disabled={currentPage === 1}
+              >
+                Prev
+              </button>
+              <span className="mx-2">
+                {currentPage} / {totalPages}
+              </span>
+              <button
+                className="button"
+                onClick={nextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </DataLoadWrapper>

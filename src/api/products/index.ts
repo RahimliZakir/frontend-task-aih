@@ -1,12 +1,12 @@
 import useSWR from "swr";
 import { fetcher } from "..";
 
-const endpoint = "/products";
+const prefix = "/products";
 
 export const useGetProducts = () => {
-  return useSWR(endpoint, fetcher);
+  return useSWR(prefix, fetcher);
 };
 
 export const useGetProductDetails = (id: string | undefined) => {
-  return useSWR(`${endpoint}/${id}`, fetcher);
+  return useSWR(`${prefix}/${id}`, fetcher);
 };

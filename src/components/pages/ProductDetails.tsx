@@ -2,7 +2,7 @@
 import { useGetProductDetails } from "../../api/products";
 import { useParams } from "react-router-dom";
 //* Types
-import { configureCurrency } from "../../utils/currency";
+import { configureCurrency } from "../../utils/amount";
 import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
 //* Shared Components
 import DataLoadWrapper from "../shared/DataLoadWrapper";
