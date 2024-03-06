@@ -17,15 +17,15 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 
 const Products = () => {
+  const [productName, setProductName] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
+
   const {
     data: productData,
     isLoading: productLoading,
     error: productError,
   } = useGetProducts();
   const { data: categoryData } = useGetCategories();
-
-  const [productName, setProductName] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
 
   const filteredProductData = productData?.filter((product: Product) => {
     const matchesCategory = category === "" || product.category === category;
@@ -46,17 +46,17 @@ const Products = () => {
     >
       <section id="products">
         <div className="custom-container py-3">
-          <div className="flex items-center justify-between mb-3">
-            <div>
+          <div className="flex flex-col items-center md:flex-row md:justify-between mb-3">
+            <div className="w-[80%] mb-3 md:w-[20%] md:mb-0">
               <input
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
                 placeholder="search product..."
                 type="text"
-                className="border rounded-md px-4 py-1 outline-none"
+                className="inline-block w-full border rounded-md px-4 py-1 outline-none"
               />
             </div>
-            <div className="w-[20%]">
+            <div className="w-[80%] md:w-[20%]">
               <Select
                 options={[
                   { value: "", label: "---select---" },
@@ -69,7 +69,7 @@ const Products = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-5">
             {currentItems?.map(
               ({
                 id,

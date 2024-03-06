@@ -12,7 +12,6 @@ const DataLoadWrapper = ({
   if (error) return <div>Error!</div>;
 
   if (
-    data === null ||
     (Array.isArray(data) && data.length === 0) ||
     (typeof data === "object" && Object.keys(data).length === 0)
   ) {
