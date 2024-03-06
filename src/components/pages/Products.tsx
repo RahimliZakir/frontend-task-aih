@@ -2,7 +2,9 @@ import { useState } from "react";
 import usePagination from "../../hooks/usePagination";
 import useSWR from "swr";
 import { fetcher } from "../../api";
-import { Product } from "../../types/Product.types";
+import { configureCurrency } from "../../utils/currency";
+import { Product } from "../../types/interfaces/Product.types";
+import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
 
 import DataLoadWrapper from "../shared/DataLoadWrapper";
 import StarRating from "../shared/StarRating";
@@ -101,7 +103,7 @@ const Products = () => {
                           </p>
                         </div>
                         <p className="font-semibold text-[1.2rem] text-[color:var(--main-color)]">
-                          {price} ₼
+                          {configureCurrency(price, CurrencyTypes.AZN)}
                         </p>
                       </div>
                     </Link>

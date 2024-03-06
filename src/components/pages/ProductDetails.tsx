@@ -1,6 +1,8 @@
 import useSWR from "swr";
 import { fetcher } from "../../api";
 import { useParams } from "react-router-dom";
+import { configureCurrency } from "../../utils/currency";
+import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
 
 import DataLoadWrapper from "../shared/DataLoadWrapper";
 import StarRating from "../shared/StarRating";
@@ -37,7 +39,7 @@ const ProductDetails = () => {
             </div>
             <p>{data?.description}</p>
             <h5 className="font-bold text-[1.6rem] text-[color:var(--main-color)]">
-              {data?.price} ₼
+              {configureCurrency(data?.price, CurrencyTypes.AZN)}
             </h5>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Product } from "../types/Product.types";
+import { Product } from "../types/interfaces/Product.types";
 
 const usePagination = (data: Product[] /*| any[]*/, itemsPerPage: number) => {
   const [currentPage, setCurrentPage] = useState(1);

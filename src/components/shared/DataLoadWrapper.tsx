@@ -1,4 +1,4 @@
-import { DataLoadWrapperProps } from "../../types/DataLoad.types";
+import { DataLoadWrapperProps } from "../../types/interfaces/DataLoad.types";
 import Spinner from "./Spinner";
 
 const DataLoadWrapper = ({

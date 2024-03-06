@@ -1,5 +1,5 @@
-import { StarRatingProps } from "../../types/StarRating.types";
-import { calculateStarWidth } from "../../utils/calculateStarWidth";
+import { StarRatingProps } from "../../types/interfaces/StarRating.types";
+import { calculateStarWidth } from "../../utils/starRating";
 
 const StarRating = ({ rating }: StarRatingProps) => {
   const calculatedWidth = calculateStarWidth(rating);
