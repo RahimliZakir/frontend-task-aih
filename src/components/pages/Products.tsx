@@ -5,6 +5,7 @@ import { useGetProducts } from "../../api/products";
 import { useGetCategories } from "../../api/categories";
 //* Utils
 import { configureCurrency } from "../../utils/currency";
+import { truncateText } from "../../utils/text";
 //* Types
 import { Product } from "../../types/interfaces/Product.types";
 import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
@@ -26,7 +27,7 @@ const Products = () => {
   const [productName, setProductName] = useState<string>("");
   const [category, setCategory] = useState<string>("");
 
-  const filteredProductData = productData?.filter((product: any) => {
+  const filteredProductData = productData?.filter((product: Product) => {
     const matchesCategory = category === "" || product.category === category;
     const matchesProductName =
       productName === "" ||
@@ -59,8 +60,7 @@ const Products = () => {
               <Select
                 options={[
                   { value: "", label: "---select---" },
-                  ,
-                  ...(categoryData?.map((item: any) => ({
+                  ...(categoryData?.map((item: string) => ({
                     value: item,
                     label: item,
                   })) || []),
@@ -93,8 +93,11 @@ const Products = () => {
                         />
                       </div>
                       <div className="p-3 border-t-[1px]">
-                        <h4 className="text-primary font-semibold mb-1 min-h-[75px]">
-                          {title}
+                        <h4
+                          title={title}
+                          className="text-primary font-semibold mb-1"
+                        >
+                          {truncateText(title, 30)}
                         </h4>
                         <span className="badge mb-1">{category}</span>
                         <div className="flex items-center">
