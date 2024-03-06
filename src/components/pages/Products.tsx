@@ -125,10 +125,12 @@ const Products = () => {
               Product Not Found!
             </div>
           )}
-          {getFilteredPaginatedItems?.length > 0 && (
+          {productData?.length > 10 && (
             <div className="mt-3 flex justify-center items-center">
               <button
-                className="button"
+                className={`button ${
+                  currentPage === 1 ? "cursor-default" : "cursor-pointer"
+                }`}
                 onClick={prevPage}
                 disabled={currentPage === 1}
               >
@@ -138,7 +140,11 @@ const Products = () => {
                 {currentPage} / {totalPages}
               </span>
               <button
-                className="button"
+                className={`button ${
+                  currentPage === totalPages
+                    ? "cursor-default"
+                    : "cursor-pointer"
+                }`}
                 onClick={nextPage}
                 disabled={currentPage === totalPages}
               >
