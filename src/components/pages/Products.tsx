@@ -1,13 +1,17 @@
+//* Hooks
 import { useState } from "react";
 import usePagination from "../../hooks/usePagination";
-import useSWR from "swr";
-import { fetcher } from "../../api";
+import { useGetProducts } from "../../api/products";
+import { useGetCategories } from "../../api/categories";
+//* Utils
 import { configureCurrency } from "../../utils/currency";
+//* Types
 import { Product } from "../../types/interfaces/Product.types";
 import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
-
+//* Shared Components
 import DataLoadWrapper from "../shared/DataLoadWrapper";
 import StarRating from "../shared/StarRating";
+//* Third Party Packages
 import Select from "react-select";
 import { Link } from "react-router-dom";
 
@@ -16,8 +20,8 @@ const Products = () => {
     data: productData,
     isLoading: productLoading,
     error: productError,
-  } = useSWR("/products", fetcher);
-  const { data: categoryData } = useSWR("/products/categories", fetcher);
+  } = useGetProducts();
+  const { data: categoryData } = useGetCategories();
 
   const [productName, setProductName] = useState<string>("");
   const [category, setCategory] = useState<string>("");

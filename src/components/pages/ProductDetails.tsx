@@ -1,16 +1,17 @@
-import useSWR from "swr";
-import { fetcher } from "../../api";
+//* Hooks
+import { useGetProductDetails } from "../../api/products";
 import { useParams } from "react-router-dom";
+//* Types
 import { configureCurrency } from "../../utils/currency";
 import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
-
+//* Shared Components
 import DataLoadWrapper from "../shared/DataLoadWrapper";
 import StarRating from "../shared/StarRating";
 
 const ProductDetails = () => {
   const params = useParams();
 
-  const { data, isLoading, error } = useSWR(`/products/${params.id}`, fetcher);
+  const { data, isLoading, error } = useGetProductDetails(params.id);
 
   return (
     <DataLoadWrapper isLoading={isLoading} error={error} data={data}>
