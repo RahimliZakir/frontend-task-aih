@@ -25,8 +25,9 @@ const Products = () => {
   } = useGetProducts();
   const { data: categoryData } = useGetCategories();
 
+  const itemsPerPage = 10;
   const { paginatedItems, nextPage, prevPage, currentPage, totalPages } =
-    usePagination(productData || [], 10);
+    usePagination(productData || [], itemsPerPage);
 
   const getFilteredPaginatedItems = paginatedItems?.filter(
     (product: Product) => {
@@ -37,6 +38,8 @@ const Products = () => {
       return matchesCategory && matchesProductName;
     }
   );
+
+  console.log(getFilteredPaginatedItems);
 
   return (
     <DataLoadWrapper
@@ -125,7 +128,7 @@ const Products = () => {
               Product Not Found!
             </div>
           )}
-          {productData?.length > 10 && (
+          {getFilteredPaginatedItems?.length === itemsPerPage && (
             <div className="mt-3 flex justify-center items-center">
               <button
                 className={`button ${
