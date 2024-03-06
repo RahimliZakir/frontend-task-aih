@@ -5,7 +5,6 @@ import { useGetProducts } from "../../api/products";
 import { useGetCategories } from "../../api/categories";
 //* Utils
 import { configureCurrency } from "../../utils/currency";
-import { truncateText } from "../../utils/text";
 //* Types
 import { Product } from "../../types/interfaces/Product.types";
 import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
@@ -95,9 +94,9 @@ const Products = () => {
                       <div className="p-3 border-t-[1px]">
                         <h4
                           title={title}
-                          className="text-primary font-semibold mb-1"
+                          className="truncate text-primary font-semibold mb-1"
                         >
-                          {truncateText(title, 30)}
+                          {title}
                         </h4>
                         <span className="badge mb-1">{category}</span>
                         <div className="flex items-center">
