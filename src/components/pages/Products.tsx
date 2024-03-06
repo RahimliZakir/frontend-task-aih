@@ -10,7 +10,7 @@ import { Product } from "../../types/interfaces/Product.types";
 import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
 //* Shared Components
 import DataLoadWrapper from "../shared/DataLoadWrapper";
-import StarRating from "../shared/StarRating";
+import StarRating from "../shared/StarRating/Index";
 //* Third Party Packages
 import Select from "react-select";
 import { Link } from "react-router-dom";

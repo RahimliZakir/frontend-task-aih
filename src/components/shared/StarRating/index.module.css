@@ -1,0 +1,22 @@
+.ratings {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  color: var(--star-background);
+  overflow: hidden;
+}
+
+.fullStars {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--star-foreground);
+}
+
+.emptyStars:before,
+.fullStars:before {
+  content: "\2605\2605\2605\2605\2605";
+  font-size: 14pt;
+}

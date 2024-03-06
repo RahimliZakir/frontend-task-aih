@@ -6,7 +6,7 @@ import { configureCurrency } from "../../utils/currency";
 import { CurrencyTypes } from "../../types/enums/CurrecyTypes.types";
 //* Shared Components
 import DataLoadWrapper from "../shared/DataLoadWrapper";
-import StarRating from "../shared/StarRating";
+import StarRating from "../shared/StarRating/Index";
 
 const ProductDetails = () => {
   const params = useParams();

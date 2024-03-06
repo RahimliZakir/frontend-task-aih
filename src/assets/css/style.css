@@ -11,7 +11,6 @@
   --linkedin-icon-color: #0a66c2;
 }
 
-
 .custom-container {
   @apply container px-[15px] mx-auto;
 }
@@ -22,49 +21,4 @@
 
 .button {
   @apply cursor-pointer inline-block px-4 py-2 mr-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
-}
-
-.spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: inline-block;
-  border-top: 3px solid var(--main-color);
-  border-right: 3px solid transparent;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.ratings {
-  position: relative;
-  vertical-align: middle;
-  display: inline-block;
-  color: var(--star-background);
-  overflow: hidden;
-}
-.full-stars {
-  position: absolute;
-  left: 0;
-  top: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  color: var(--star-foreground);
-}
-.empty-stars:before,
-.full-stars:before {
-  content: "\2605\2605\2605\2605\2605";
-  font-size: 14pt;
 }

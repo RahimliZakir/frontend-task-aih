@@ -1,5 +1,5 @@
 import { DataLoadWrapperProps } from "../../types/interfaces/DataLoad.types";
-import Spinner from "./Spinner";
+import Spinner from "./Spinner/Index";
 
 const DataLoadWrapper = ({
   isLoading,
