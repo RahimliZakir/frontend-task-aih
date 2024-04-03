@@ -1,25 +1,25 @@
 import { useState } from "react";
 import { Product } from "../types/interfaces/Product.types";
 
-const usePagination = (data: Product[] | any[], itemsPerPage: number) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const usePagination = (data: Product[] | any[], pageSize: number) => {
+  const [pageIndex, setPageIndex] = useState(1);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const indexOfLastItem = pageIndex * pageSize;
+  const indexOfFirstItem = indexOfLastItem - pageSize;
   const paginatedItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
   const nextPage = () => {
-    setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(data.length / itemsPerPage))
+    setPageIndex((prevPage) =>
+      Math.min(prevPage + 1, Math.ceil(data.length / pageSize))
     );
   };
 
   const prevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    setPageIndex((prevPage) => Math.max(prevPage - 1, 1));
   };
 
   const goToPage = (page: number) => {
-    setCurrentPage(page);
+    setPageIndex(page);
   };
 
   return {
@@ -27,8 +27,8 @@ const usePagination = (data: Product[] | any[], itemsPerPage: number) => {
     nextPage,
     prevPage,
     goToPage,
-    currentPage,
-    totalPages: Math.ceil(data.length / itemsPerPage),
+    pageIndex,
+    totalPages: Math.ceil(data.length / pageSize),
   };
 };
 

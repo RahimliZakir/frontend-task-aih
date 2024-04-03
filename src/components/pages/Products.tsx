@@ -10,6 +10,7 @@ import { Product } from "../../types/interfaces/Product.types";
 //* Shared Components
 import DataLoadWrapper from "../shared/DataLoadWrapper";
 import StarRating from "../shared/StarRating/Index";
+import PaginationControls from "../shared/PaginationControls";
 //* Third Party Packages
 import Select from "react-select";
 import { Link } from "react-router-dom";
@@ -25,21 +26,21 @@ const Products = () => {
   } = useGetProducts();
   const { data: categoryData } = useGetCategories();
 
-  const itemsPerPage = 10;
-  const { paginatedItems, nextPage, prevPage, currentPage, totalPages } =
-    usePagination(productData || [], itemsPerPage);
+  const filteredItems = productData?.filter((product: Product) => {
+    const matchesCategory = category === "" || product.category === category;
+    const matchesProductName =
+      productName === "" ||
+      product.title.toLowerCase().includes(productName.toLowerCase());
+    return matchesCategory && matchesProductName;
+  });
 
-  const getFilteredPaginatedItems = paginatedItems?.filter(
-    (product: Product) => {
-      const matchesCategory = category === "" || product.category === category;
-      const matchesProductName =
-        productName === "" ||
-        product.title.toLowerCase().includes(productName.toLowerCase());
-      return matchesCategory && matchesProductName;
-    }
-  );
+  console.log(filteredItems, "filtered");
 
-  console.log(getFilteredPaginatedItems);
+  const pageSize = 10;
+  const { paginatedItems, nextPage, prevPage, pageIndex, totalPages } =
+    usePagination(filteredItems || [], pageSize);
+
+  console.log(paginatedItems, "paginated");
 
   return (
     <DataLoadWrapper
@@ -72,9 +73,9 @@ const Products = () => {
               />
             </div>
           </div>
-          {getFilteredPaginatedItems?.length > 0 ? (
+          {paginatedItems?.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-5">
-              {getFilteredPaginatedItems?.map(
+              {paginatedItems?.map(
                 ({
                   id,
                   title,
@@ -128,33 +129,15 @@ const Products = () => {
               Product Not Found!
             </div>
           )}
-          {getFilteredPaginatedItems?.length === itemsPerPage && (
-            <div className="mt-3 flex justify-center items-center">
-              <button
-                className={`button ${
-                  currentPage === 1 ? "cursor-default" : "cursor-pointer"
-                }`}
-                onClick={prevPage}
-                disabled={currentPage === 1}
-              >
-                Prev
-              </button>
-              <span className="mx-2">
-                {currentPage} / {totalPages}
-              </span>
-              <button
-                className={`button ${
-                  currentPage === totalPages
-                    ? "cursor-default"
-                    : "cursor-pointer"
-                }`}
-                onClick={nextPage}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </button>
-            </div>
-          )}
+
+          <PaginationControls
+            data={paginatedItems}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            pageIndex={pageIndex}
+            pageSize={pageSize}
+            totalPages={totalPages}
+          />
         </div>
       </section>
     </DataLoadWrapper>
