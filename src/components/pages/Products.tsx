@@ -121,7 +121,7 @@ const Products = () => {
           </div>
 
           <PaginationControls
-            data={paginatedItems}
+            data={filteredItems}
             nextPage={nextPage}
             prevPage={prevPage}
             pageIndex={pageIndex}
