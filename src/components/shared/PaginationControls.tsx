@@ -10,7 +10,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
 }) => {
   return (
     <>
-      {data?.length === pageSize && (
+      {data?.length > pageSize && (
         <div className="mt-3 flex justify-center items-center">
           <button
             className={`button ${

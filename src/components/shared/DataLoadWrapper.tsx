@@ -27,7 +27,7 @@ const DataLoadWrapper = ({
     );
   }
 
-  return data && children;
+  return children;
 };
 
 export default DataLoadWrapper;

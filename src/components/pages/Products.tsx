@@ -73,62 +73,56 @@ const Products = () => {
               />
             </div>
           </div>
-          {paginatedItems?.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-5">
-              {paginatedItems?.map(
-                ({
-                  id,
-                  title,
-                  price,
-                  category,
-                  image,
-                  rating: { rate, count },
-                }: Product) => {
-                  return (
-                    <div
-                      key={id}
-                      className="border rounded-[5px] overflow-hidden hover:shadow-lg duration-300"
-                    >
-                      <Link to={`/products/${id}`}>
-                        <div className="bg-white">
-                          <img
-                            className="w-full h-[300px] object-contain"
-                            src={image}
-                            alt="Product"
-                          />
-                        </div>
-                        <div className="p-3 border-t-[1px]">
-                          <h4
-                            title={title}
-                            className="truncate text-primary font-semibold mb-1"
-                          >
-                            {title}
-                          </h4>
-                          <span className="badge mb-1">{category}</span>
-                          <div className="flex items-center">
-                            <p>{rate}</p>
-                            <div className="mx-1">
-                              <StarRating rating={rate} />
-                            </div>
-                            <p className="text-[color:gray] text-[0.8rem]">
-                              ({count})
-                            </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-5">
+            {paginatedItems?.map(
+              ({
+                id,
+                title,
+                price,
+                category,
+                image,
+                rating: { rate, count },
+              }: Product) => {
+                return (
+                  <div
+                    key={id}
+                    className="border rounded-[5px] overflow-hidden hover:shadow-lg duration-300"
+                  >
+                    <Link to={`/products/${id}`}>
+                      <div className="bg-white">
+                        <img
+                          className="w-full h-[300px] object-contain"
+                          src={image}
+                          alt="Product"
+                        />
+                      </div>
+                      <div className="p-3 border-t-[1px]">
+                        <h4
+                          title={title}
+                          className="truncate text-primary font-semibold mb-1"
+                        >
+                          {title}
+                        </h4>
+                        <span className="badge mb-1">{category}</span>
+                        <div className="flex items-center">
+                          <p>{rate}</p>
+                          <div className="mx-1">
+                            <StarRating rating={rate} />
                           </div>
-                          <p className="font-semibold text-[1.2rem] text-[color:var(--main-color)]">
-                            {configureCurrency(price)}
+                          <p className="text-[color:gray] text-[0.8rem]">
+                            ({count})
                           </p>
                         </div>
-                      </Link>
-                    </div>
-                  );
-                }
-              )}
-            </div>
-          ) : (
-            <div className="text-center font-medium text-[1.5rem] py-3">
-              Product Not Found!
-            </div>
-          )}
+                        <p className="font-semibold text-[1.2rem] text-[color:var(--main-color)]">
+                          {configureCurrency(price)}
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              }
+            )}
+          </div>
 
           <PaginationControls
             data={paginatedItems}
