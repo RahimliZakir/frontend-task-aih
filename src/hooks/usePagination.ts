@@ -6,7 +6,10 @@ const usePagination = (data: Product[] | any[], pageSize: number) => {
 
   const indexOfLastItem = pageIndex * pageSize;
   const indexOfFirstItem = indexOfLastItem - pageSize;
-  const paginatedItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const paginatedItems =
+    data.length > pageSize
+      ? data.slice(indexOfFirstItem, indexOfLastItem)
+      : data;
 
   const nextPage = () => {
     setPageIndex((prevPage) =>

@@ -34,13 +34,9 @@ const Products = () => {
     return matchesCategory && matchesProductName;
   });
 
-  console.log(filteredItems, "filtered");
-
   const pageSize = 10;
   const { paginatedItems, nextPage, prevPage, pageIndex, totalPages } =
     usePagination(filteredItems || [], pageSize);
-
-  console.log(paginatedItems, "paginated");
 
   return (
     <DataLoadWrapper
